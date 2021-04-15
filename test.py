@@ -1,28 +1,14 @@
-# import dash
-# from datetime import date
-# import numpy as np
-# import dash
-# import dash_daq as daq
-# import dash_html_components as html
 # import warnings
 # import itertools
-#
-# import pandas as pd
-# from datetime import datetime
 # import matplotlib.pyplot as plt
+# import dash_table
 # warnings.filterwarnings("ignore")
 # plt.style.use('fivethirtyeight')
 # import statsmodels.api as sm
-# import matplotlib
 # import statistics
 # from datetime import date
-# import io
 # import dash_core_components as dcc
 # import dash_html_components as html
-# from statsmodels.tsa.arima_model import ARIMA #import ARIMA libary
-#
-# import matplotlib.pyplot as plt
-# from dash.dependencies import Input, Output
 # import plotly.express as px
 # from pandas import Timestamp
 # import io
@@ -31,7 +17,6 @@
 # import dash
 # from dash.dependencies import Input, Output, State
 # from sqlalchemy import Table, create_engine
-# from sqlalchemy.sql import select
 # from flask_sqlalchemy import SQLAlchemy
 # from werkzeug.security import generate_password_hash, check_password_hash
 # import sqlite3
@@ -39,11 +24,11 @@
 # import os
 # from flask_login import login_user, logout_user, current_user, LoginManager, UserMixin
 # import configparser
+# import dash_daq as daq
+#
 #
 # tab_selected_style = {
-#     'borderTop': 'None',
-#     'borderBottom': 'None',
-#     # 'borderLeft': 'None',
+#     'borderTop': '#FBEF3C',
 #     'borderRight': 'None',
 #     'backgroundColor': '#FBEF3C',
 #     'color': 'black',
@@ -54,12 +39,33 @@
 #     'backgroundColor': '#0F1328',
 #     'fontWeight': 'bold',
 #     'color': 'white',
-#     'borderTop': 'None',
+#     # 'borderTop': '#FBEF3C',
 #     'borderBottom': 'None',
 #     # 'borderLeft': 'None',
 #     'borderRight': 'None',
 #
 # }
+#
+# tab_selected_style1 = {
+#     'borderTop': '#FBEF3C',
+#     'borderLeft': 'None',
+#     'borderRight': 'None',
+#     'backgroundColor': '#FBEF3C',
+#     'color': 'black',
+#     'fontWeight': 'bold'
+#
+# }
+# tab_style1 = {
+#     'backgroundColor': '#0F1328',
+#     'fontWeight': 'bold',
+#     'color': 'white',
+#     'borderBottom': 'None',
+#     'borderLeft': 'None',
+#     'borderRight': 'None',
+#
+# }
+#
+#
 # external_stylesheets = [
 #     'https://codepen.io/chriddyp/pen/bWLwgP.css',
 #     {
@@ -100,21 +106,22 @@
 # # Importing a stylesheet
 #
 # # Creating a dropdown list
-# global list_dict
+# # global list_dict
 # list_dict = []
 #
 #
-# import plotly.graph_objects as go
-#
-#
-#
-# # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 # success = html.Div([
 # html.Div([
 #
+#     html.Div([
+#         html.Img(src=app.get_asset_url("thelogo.png")),
+#         # html.Button(id='back-button1', children='Go back', n_clicks=0)
+#
+#     ],style={"background-color":"#0F1328",
+#              "border - bottom - style": "solid"
+#              }),
 #
 # dcc.Tabs([
-#
 #     dcc.Tab(label='Welcome', children=[
 #
 #
@@ -135,17 +142,38 @@
 #
 #             }),
 #
-#             html.H4("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+#             html.H4("Aztech Digital is a business analytics tool that aims at providing non-data science savvies with the opportunity to turn data-driven."
+#                     "If you hold a business and do not have the technical knowledge or staff to handle your daily operations and transactions, this is the place."
+#                     "You will find below the steps to be able to use this application successfully. If you have advanced needs or would like a customized dashboard, reach out to us at ksoro17@alustudent.com."
+#                     ,
 #                 style={
 #                 "color": "white",
-#                 "text-align": "center",
+#                 "text-align": "Justify",
 #                 "font-family":"Montserrat",
 #                 "width": "60%",
+#
 #                 "font-size": "20px",
 #                 "margin-left": "20%"
 #
 #                    }
 #                     ),
+#             html.H4(
+#                 "You will find below the steps to be able to use this application successfully. If you have advanced needs or would like a customized dashboard, reach out to us at ksoro17@alustudent.com."
+#                 ,
+#                 style={
+#                     "color": "white",
+#                     "text-align": "Justify",
+#                     "font-family": "Montserrat",
+#                     "width": "60%",
+#
+#                     "font-size": "20px",
+#                     "margin-left": "20%"
+#
+#                 }
+#                 ),
+#
+#
+#
 #             html.Br(),
 #             html.Br(),
 #             html.Div([
@@ -164,6 +192,7 @@
 #                     html.H5("Have your application available to you everywhere on every device 24/7 ", style={
 #                          'text-align': 'center',
 #                         "color": "white"
+#                         , "font-family": "Montserrat"
 #
 #                     })
 #                 ], className="three columns"),
@@ -183,6 +212,8 @@
 #                     html.H5("With our pre-made dashboard and predictive tools, only focus receiving insights", style={
 #                         'text-align': 'center',
 #                         "color": "white"
+#                         , "font-family": "Montserrat"
+#
 #                     })
 #                 ],className="three columns"),
 #                 html.Div([
@@ -200,6 +231,7 @@
 #                     html.H5("Get support from our team for further and advanced analytics", style={
 #                         'text-align': 'center',
 #                         "color": "white"
+#                         , "font-family": "Montserrat"
 #
 #                     })
 #
@@ -219,6 +251,8 @@
 #                     html.H5("Interact on with analytics as if you made", style={
 #                         'text-align': 'center',
 #                         "color": "white"
+#                         ,"font-family": "Montserrat"
+#
 #                     })
 #
 #
@@ -239,18 +273,39 @@
 #                 'Use our template sheet to record your transaction, note that for better and faster'
 #                 'processing,this the names of the columns shouldnt be change. The sheet mainly consists of rows to'
 #                 'records your sales/transactions, their dates, amount and some other categorizations.'
-#                 , style={'text-align': 'Left', "color":"white"}),
+#                 , style={'text-align': 'Justify', "color":"white"
+#                          ,"font-family":"Montserrat"
+#
+#                          }),
 #                 html.A("Template Sheet",
 #                        href='https://docs.google.com/spreadsheets/d/1jHhDxHi_2IhJZFDEOrOS7xhm1OORrgPOAL1l2O-XTzs/edit?usp=sharing',
-#                        target="_blank",style={"color":"#EF505F"}),
+#                        target="_blank",style={"color":"#85E0D3"
+#                         , "font-family": "Montserrat"
+#
+#                                               }),
 #             html.Br(),
 #             html.H3('STEP 2', style={'text-align': 'Left', "color": "#F4D44D"}),
 #             html.H4(
 #                 'When you reach a stage of your data and feel you need some insights, download the data '
-#                 'as a xlsx or csv file and'
+#                 'as a xlsx, csv, txt and tsv file and'
 #                 'uppload it below, this is the data that will be used to construct all the analytics.'
 #                 'Note that the data you enter is local and we do not keep track of your data'
-#                 , style={'text-align': 'Left', "color": "white"}),
+#                 'The below columns should appear in your data'
+#                 'There will be more explanation about what you should do to the above sample when you open it'
+#                 , style={'text-align': 'Justify', "color": "white"
+#
+#                          ,"font-family":"Montserrat"
+#                          }),
+#
+#                 html.Br(),
+#
+#                 dash_table.DataTable(
+#                     id='table',
+#                     columns=[{"name": i, "id": i}
+#                              for i in ["Source","Product", "Amount", "Date","Location","Payment Mode"]],
+#
+#                 ),
+#
 #
 #
 #             html.Br(),
@@ -258,7 +313,10 @@
 #             html.H4(
 #                 "After upploading your data you can head to the dashboard and recommendation tabs, where the "
 #                 "information is now updated"
-#                 , style={'text-align': 'Left', "color": "white"}),
+#                 , style={'text-align': 'Justify', "color": "white"
+#                     , "font-family": "Montserrat"
+#
+#                          }),
 #
 #             html.Br(),
 #             html.Br(),
@@ -275,7 +333,7 @@
 #                         'lineHeight': '60px',
 #                         'borderWidth': '1px',
 #                         'borderColor': 'white',
-#
+#                         "font-family":"Montserrat",
 #                         'borderStyle': 'dashed',
 #                         'borderRadius': '5px',
 #                         'textAlign': 'center',
@@ -288,7 +346,10 @@
 #                 html.Br(),
 #                 html.Br(),
 #
-#                 html.Div(id='output_container3', children=[],style={"color":"green",'text-align': 'center', "font-size":"20px"}),
+#                 html.Div(id='output_container3', children=[],style={"color":"green",'text-align': 'center', "font-size":"20px"
+#                     , "font-family": "Montserrat"
+#
+#                                                                     }),
 #
 #             ],style={
 #
@@ -309,7 +370,7 @@
 #         ),
 #
 #
-#         ],style=tab_style,selected_style=tab_selected_style),
+#         ],style=tab_style1,selected_style=tab_selected_style1),
 #
 #
 #         dcc.Tab(label='Your Dashboard', children=[
@@ -317,7 +378,6 @@
 #             html.H2("YOUR DASHBOARD", style={
 #                 "color": "#92E0D3",
 #                 "text-align": "center",
-#
 #             }),
 #     html.Div([
 #
@@ -430,18 +490,49 @@
 #         ],style=tab_style,selected_style=tab_selected_style),
 #
 #
-#         dcc.Tab(label='ForeCasting and Recommendations',children=[
+#         dcc.Tab(label='ForeCasting',children=[
+#             html.Div([
+#                 html.H2("CASH FLOW FORECAST", style={
+#                     "color": "#92E0D3",
+#                     "text-align": "center",
+#                     "padding-bottom":"1%"
+#                 }),
 #                 html.Div([
-#                     html.Div(id='output_container5', children=[]),
-#                     html.H3("Please Enter the number months you want to forcast for"),
-#                     daq.NumericInput(
-#                         id='my-numeric-input',
-#                         value=0
-#                     ),
-#                     dcc.Graph(id='predict',figure={})],style={"padding":"5%"})
-#         ],style=tab_style,selected_style=tab_selected_style),
-#     ]),
-# # <-------------------->
+#             dcc.Graph(id='predict', figure={})], style={
+#                     # "padding": "5%",
+#                     # "padding-bottom": "1%"
+#
+#                 }),
+#             html.Div(id='output_container5', children=[]
+#                      ,style=
+#             {
+#                 # "margin-left":"1%",
+#                 # "padding":"1%"
+#             }
+#                      ),
+#
+#             html.H3("Please Enter the number months you want to forcast for",style={"color":"white", "text-align":"center"}),
+#             daq.NumericInput(
+#                                 labelPosition='bottom',
+#                                 id='my-numeric-input',
+#                                 size=120,
+#                                 min=0,
+#                                 max=10000,
+#                                 value=100,
+#                                 # style={bla}
+#
+#                             ),
+#         ],style={
+#                 # "padding":"5%",
+#                 "padding-left":"5%",
+#                 "padding-right": "5%",
+#                 "padding-bottom": "5%",
+#                 "padding-top":"0.5%"})
+#
+#     ], style=tab_style,selected_style=tab_selected_style),
+# ]),
+#
+#     # <-------------------->
 # ],style={
 #     "position": "relative",
 #     "background-color":"#1E2130"
@@ -533,6 +624,7 @@
 #      ])
 # def update_output_line1(days,value,content,filename):
 #     df = parse_data(content, filename)
+#     df = df[df["Product"].isin(value)]
 #     df['Date'] = pd.to_datetime(df['Date'])
 #     data = df[['Date', 'Amount']]
 #     forcast_data = data.groupby('Date')['Amount'].sum().reset_index()
@@ -721,7 +813,13 @@
 #         id='dropdown-id1',
 #         options=list_dict,
 #         value=[list_dict[0]['label']],
-#         style={'background-color': '#0F1328', "color": "#9A3E49", "width": "90%", "margin": "5%"},
+#         style={
+#             'background-color': '#1E2130',
+#              "color": "#9A3E49",
+#             # , "width": "90%",
+#             # "margin": "5%"
+#             "padding-bottom":"1%"
+#         },
 #         multi=True
 #         , searchable=True
 #     )
@@ -742,17 +840,17 @@
 #         start_date = Timestamp('2021-02-01 00:00:00')
 #     mask = (df['Date'] > start_date) & (df['Date'] <= end_date)
 #     product_df = df.loc[mask]
-#     final = product_df.groupby(['Paiement Mode'])['Amount'].sum().reset_index()
+#     final = product_df.groupby(['Payment Mode'])['Amount'].sum().reset_index()
 #     top_final = final.nlargest(4, 'Amount')
 #
 #
 #     fig = px.bar(
 #         data_frame=top_final,
-#         y='Paiement Mode',
+#         y='Payment Mode',
 #         x='Amount',
 #         orientation='h',
-#         hover_data=['Paiement Mode', 'Amount'],
-#         labels={'Paiement Mode': 'turnover'},
+#         hover_data=['Payment Mode', 'Amount'],
+#         labels={'Payment Mode': 'turnover'},
 #         template='plotly_dark'
 #     )
 #     fig.update_layout(
@@ -981,6 +1079,7 @@
 #             return success
 #         else:
 #             return failed
+#             # return login
 #     elif pathname == '/data':
 #         if current_user.is_authenticated:
 #             return data
@@ -1083,8 +1182,8 @@
 #     if n_clicks > 0:
 #         return '/'
 #
-# if __name__ == '__main__':
-#     app.run_server(debug=True)
-#
 # # if __name__ == '__main__':
-# #     app.run_server(debug=False,dev_tools_ui=False,dev_tools_props_check=False)
+# #     app.run_server(debug=True)
+#
+# if __name__ == '__main__':
+#     app.run_server(debug=False,dev_tools_ui=False,dev_tools_props_check=False)
