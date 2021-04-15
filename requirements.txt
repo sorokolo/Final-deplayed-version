@@ -1,0 +1,6 @@
+statsmodels~=0.12.2
+plotly~=4.14.3
+dash~=1.19.0
+configparser~=5.0.2
+sqlalchemy~=1.4.4
+werkzeug~=1.0.1
