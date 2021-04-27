@@ -1,0 +1,8 @@
+#!/bin/bash
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+    exec /home/soro/miniconda3/envs/AztechDash/lib/orca.app/Contents/MacOS/orca "$@"
+else
+    # Assume linux
+    exec /home/soro/miniconda3/envs/AztechDash/lib/orca_app/orca --no-sandbox "$@"
+fi
