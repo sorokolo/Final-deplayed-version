@@ -1,7 +1,6 @@
 import warnings
 import itertools
 import matplotlib.pyplot as plt
-import dash_table
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
 import statsmodels.api as sm
@@ -74,23 +73,10 @@ external_stylesheets = [
 # global list_dict
 list_dict = []
 
-
 success = html.Div([
 html.Div([
-
-    html.Div([
-        html.Img(src=app.get_asset_url("thelogo.png")),
-        # html.Button(id='back-button1', children='Go back', n_clicks=0)
-
-    ],style={"background-color":"#0F1328",
-             "border - bottom - style": "solid"
-             }),
-
 dcc.Tabs([
     dcc.Tab(label='Welcome', children=[
-
-
-
         html.Div([
             html.Br(),
             html.Br(),
@@ -108,8 +94,8 @@ dcc.Tabs([
             }),
 
             html.H4("Aztech Digital is a business analytics tool that aims at providing non-data science savvies with the opportunity to turn data-driven."
-                    "If you hold a business and do not have the technical knowledge or staff to handle your daily operations and transactions, this is the place."
-                    "You will find below the steps to be able to use this application successfully. If you have advanced needs or would like a customized dashboard, reach out to us at ksoro17@alustudent.com."
+                    "If you hold a business and do not have the technical knowledge or staff to handle your daily operations and transactions, this is the place for you."
+                    "A business analytics platform that allows transaction registration companies monitor the performance of their business (Small and medium sized enterprises)."
                     ,
                 style={
                 "color": "white",
@@ -123,7 +109,7 @@ dcc.Tabs([
                    }
                     ),
             html.H4(
-                "You will find below the steps to be able to use this application successfully. If you have advanced needs or would like a customized dashboard, reach out to us at ksoro17@alustudent.com."
+                "You will find below the steps to be able to use this application successfully."
                 ,
                 style={
                     "color": "white",
@@ -236,7 +222,7 @@ dcc.Tabs([
             html.H3('STEP 1', style={'text-align': 'Left', "color":"#F4D44D"}),
             html.H4(
                 'Use our template sheet to record your transaction, note that for better and faster'
-                'processing,this the names of the columns shouldnt be change. The sheet mainly consists of rows to'
+                'processing, this the names of the columns shouldnt be change . The sheet mainly consists of rows to'
                 'records your sales/transactions, their dates, amount and some other categorizations.'
                 , style={'text-align': 'Justify', "color":"white"
                          ,"font-family":"Montserrat"
@@ -253,29 +239,28 @@ dcc.Tabs([
             html.H4(
                 'When you reach a stage of your data and feel you need some insights, download the data '
                 'as a xlsx, csv, txt and tsv file and'
-                'uppload it below, this is the data that will be used to construct all the analytics.'
-                'Note that the data you enter is local and we do not keep track of your data'
-                'The below columns should appear in your data'
-                'There will be more explanation about what you should do to the above sample when you open it'
+                'uppload it below, this is the data that will be used to construct all the analytics. '
+                'Note that the data you enter is local and we do not keep track of your data. '
+                'The below columns should appear in your data. '
+                'There will be more explanation about what you should do to the above sample when you open it. '
                 , style={'text-align': 'Justify', "color": "white"
 
                          ,"font-family":"Montserrat"
                          }),
 
+
                 html.H4(
-                   "Source    |    Product    |    Amount    |    Date    |    Location    |    Payment    |    Mode"
+                    "Source    |    Product    |    Amount    |    Date    |    Location    |    Payment    |    Mode"
                     , style={'text-align': 'Justify', "color": "white"
 
                         , "font-family": "Montserrat"
                              }),
 
-
-
             html.Br(),
             html.H3('STEP 3', style={'text-align': 'Left', "color": "#F4D44D"}),
             html.H4(
-                "After upploading your data you can head to the dashboard and recommendation tabs, where the "
-                "information is now updated"
+                "After upploading your data you can head to the other tabs tabs, where the"
+                "information is now updated."
                 , style={'text-align': 'Justify', "color": "white"
                     , "font-family": "Montserrat"
 
@@ -307,7 +292,6 @@ dcc.Tabs([
                     multiple=False
                 ),
                 html.Br(),
-                html.Br(),
 
                 html.Div(id='output_container3', children=[],style={"color":"green",'text-align': 'center', "font-size":"20px"
                     , "font-family": "Montserrat"
@@ -336,8 +320,8 @@ dcc.Tabs([
         ],style=tab_style1,selected_style=tab_selected_style1),
 
 
-        dcc.Tab(label='Your Dashboard', children=[
-  # Layer for 80% width
+        dcc.Tab(id = "your_dashbord",label='Your Dashboard', children=[
+            # Layer for 80% width
             html.H2("YOUR DASHBOARD", style={
                 "color": "#92E0D3",
                 "text-align": "center",
@@ -365,8 +349,6 @@ dcc.Tabs([
 
                      }),
             html.Br(),
-
-
                     html.H4("Rate of change", style={'text-align': 'left',"color":"white", "font-family":"monospace","margin": "5%",}),
                     html.Div(id='output_container1', children=[],
                      style={
@@ -381,7 +363,38 @@ dcc.Tabs([
                             'text-align': 'center'
                      }),
             html.Br(),
-            html.Div([
+                    html.H4("No Products", style={'text-align': 'left',"color":"white", "font-family":"monospace","margin": "5%",}),
+                                        html.Div(id='output_container10', children=[],
+                                         style={
+                                                "color":'#92E0D3',
+                                                "font-size": "150%",
+                                                "border":"1px solid white",
+                                                "width": "80%",
+                                                "font-family":"Roboto",
+                                                "background-color":"#1B1E2B",
+                                                "padding-top": "5%",
+                                                 "padding-bottom": "5%",
+                                                "margin": "10%",
+                                                'text-align': 'center'
+                                         }),
+            html.Br(),
+            html.H4("No Payment",
+                    style={'text-align': 'left', "color": "white", "font-family": "monospace", "margin": "5%", }),
+            html.Div(id='output_container11', children=[],
+                     style={
+                         "color": '#92E0D3',
+                         "font-size": "150%",
+                         "border": "1px solid white",
+                         "width": "80%",
+                         "font-family": "Roboto",
+                         "background-color": "#1B1E2B",
+                         "padding-top": "5%",
+                         "padding-bottom": "5%",
+                         "margin": "10%",
+                         'text-align': 'center'
+                     }),
+
+            html.Div(id="data_picker", children =[
             dcc.DatePickerRange(
                 id='my-date-picker-range',
                 min_date_allowed=date(1995, 1, 1),
@@ -397,18 +410,6 @@ dcc.Tabs([
                     "margin":"7%"
             },),
 
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
-            html.Br(),
             html.Br(),
 
             html.Div(id = "output_container4",style={'background-color': '#0F1328',"color":"#9A3E49"},),
@@ -483,7 +484,6 @@ dcc.Tabs([
                                 max=10000,
                                 value=100,
                                 # style={bla}
-
                             ),
         ],style={
                 # "padding":"5%",
@@ -493,6 +493,76 @@ dcc.Tabs([
                 "padding-top":"0.5%"})
 
     ], style=tab_style,selected_style=tab_selected_style),
+
+    dcc.Tab(label='Download and Contact', children=[
+
+        html.Div([
+        html.H2("Contact Information", style={
+            "color": "#92E0D3",
+            "text-align": "center",
+        }),
+
+        html.H4("If you have advanced needs or would like a customized dashboard, reach out to us using the below information", style={
+            "color": "white",
+            "text-align": "center",
+        }),
+        html.Br(),
+
+        html.H4("Email : ksoro17@alustudent.com", style={
+            "color": "white",
+            "text-align": "center",
+        }),
+        html.H4("Phone Number : +250784649249", style={
+            "color": "white",
+            "text-align": "center",
+        }),
+
+        html.Br(),
+        html.Br(),
+        html.Br(),
+
+        html.Button('Print Report', id='button', n_clicks=0,
+                    style={
+                        "border": "4px solid Yellow",
+                        "color": "white",
+                        "display": "block",
+                        "margin-left": "auto",
+                        "margin-right": "auto",
+                    }
+                    ),
+
+        html.H2("The downloaded State", style={
+            "color": "#92E0D3",
+            "text-align": "center",
+        }),
+
+        html.Div([
+        html.Div(id='graph_img', style={"width":"50%"}),
+        html.Div(id='graph_img2', style={"width":"50%"}),
+        html.Div(id='graph_img3', style={"width":"50%"}),
+        html.Div(id='graph_img4', style={"width":"50%"}),
+        html.Div(id='graph_img5', style={"width":"50%"}),
+
+        ], style={"width":"80%",
+                  "margin-left":"21%",
+                'borderColor': 'white',}),
+
+        ],style={ "padding":"5%", "padding-bottom":"10%",})
+
+
+    ], style=tab_style, selected_style=tab_selected_style),
+
+
+
+
+
+
+
+
+
+
+
+
 ]),
 
     # <-------------------->
@@ -502,6 +572,7 @@ dcc.Tabs([
 })
 
 ])
+
 
 
 def parse_data(contents, filename):
@@ -694,10 +765,12 @@ def update_output_line1(days,value,content,filename):
     [dash.dependencies.Input('my-date-picker-range', 'start_date'),
      dash.dependencies.Input('my-date-picker-range', 'end_date'),
      Input('upload-data', 'contents'),
-     Input('upload-data', 'filename')
+     Input('upload-data', 'filename'),
+     dash.dependencies.Input('prod_num', 'value'),
+
      ])
 
-def update_output(start_date, end_date,content,filename):
+def update_output(start_date, end_date,content,filename,value):
     df = parse_data(content, filename)
     df['Date'] = pd.to_datetime(df['Date'])
     for i in df['Product'].unique():
@@ -709,7 +782,7 @@ def update_output(start_date, end_date,content,filename):
 
     print(list_dict)
 
-    document = filename+" "+"was data was Loaded sucessfully"
+    document = filename+" "+" was Loaded sucessfully"
 
 
     print(df)
@@ -719,13 +792,14 @@ def update_output(start_date, end_date,content,filename):
     mask = (df['Date'] > start_date) & (df['Date'] <= end_date)
     product_df = df.loc[mask]
     final = product_df.groupby(['Product'])['Amount'].sum().reset_index()
-    top_final = final.nlargest(5, 'Amount')
 
-
+    top_final = final.nlargest(value, 'Amount')
 
     Final = product_df['Amount'].sum()
     Value1 = df[df['Date']==start_date]["Amount"].sum()
     Value2 = df[df['Date']==end_date]["Amount"].sum()
+
+
 
     container1 = ""
     if Value1==0:
@@ -734,11 +808,9 @@ def update_output(start_date, end_date,content,filename):
         container_value = ((Value2/Value1)-1)*100
         container1 += str(round(container_value, 2))+""+"%"
 
-
-
     container = Final
 
-    fig = px.pie(top_final, values=final['Amount'], names=final['Product'])
+    fig = px.pie(top_final, values=top_final['Amount'], names=top_final['Product'])
     fig.update_layout(
         plot_bgcolor="#0F1328",
         paper_bgcolor="#0F1328",
@@ -747,7 +819,7 @@ def update_output(start_date, end_date,content,filename):
         yaxis_title = 'Aggregated Revenue',
         # margin=dict(t=50),
         title={
-        'text': "Top 5 Revenue Producers",
+        'text': "Top Revenue Producers",
         'y':0.95,
         'x':0.5,
         'xanchor': 'center',
@@ -779,8 +851,6 @@ def update_output(start_date, end_date,content,filename):
         style={
             'background-color': '#1E2130',
              "color": "#9A3E49",
-            # , "width": "90%",
-            # "margin": "5%"
             "padding-bottom":"1%"
         },
         multi=True
@@ -794,9 +864,11 @@ def update_output(start_date, end_date,content,filename):
     [dash.dependencies.Input('my-date-picker-range', 'start_date'),
      dash.dependencies.Input('my-date-picker-range', 'end_date'),
      Input('upload-data', 'contents'),
-     Input('upload-data', 'filename')
+     Input('upload-data', 'filename'),
+     dash.dependencies.Input('paiement_num', 'value')
+
      ])
-def update_output_bar(start_date, end_date,content,filename):
+def update_output_bar(start_date, end_date,content,filename,value):
     df = parse_data(content, filename)
     df['Date'] = pd.to_datetime(df['Date'])
     if(start_date==None):
@@ -804,7 +876,8 @@ def update_output_bar(start_date, end_date,content,filename):
     mask = (df['Date'] > start_date) & (df['Date'] <= end_date)
     product_df = df.loc[mask]
     final = product_df.groupby(['Payment Mode'])['Amount'].sum().reset_index()
-    top_final = final.nlargest(4, 'Amount')
+
+    top_final = final.nlargest(value, 'Amount')
 
 
     fig = px.bar(
@@ -823,7 +896,7 @@ def update_output_bar(start_date, end_date,content,filename):
         xaxis_title = 'Payment Mode',
         yaxis_title = 'Aggregated Revenue',
         title={
-        'text': "Top 4 Payment mode",
+        'text': "Top Payment mode",
         'y':0.95,
         'x':0.5,
         'xanchor': 'center',
@@ -840,12 +913,15 @@ def update_output_bar(start_date, end_date,content,filename):
 # Line chart
 @app.callback(
     dash.dependencies.Output('month_year', 'figure'),
+
     [dash.dependencies.Input('dropdown-id', 'value'),
      Input('upload-data', 'contents'),
      Input('upload-data', 'filename'),
      ])
 def update_output_line(value,content,filename):
     df = parse_data(content, filename)
+
+
     df['Date'] = pd.to_datetime(df['Date'])
     month_year = df.groupby(['Date',"Location",'Product'])['Amount'].sum().reset_index()
     dff = month_year[month_year["Product"].isin(value)]
@@ -854,7 +930,9 @@ def update_output_line(value,content,filename):
         data_frame=dff,
         x='Date',
         y='Amount',
-        template='plotly_dark'
+        template='plotly_dark',
+        color = 'Product',
+
     )
 
     fig.update_layout(
@@ -879,7 +957,9 @@ def update_output_line(value,content,filename):
 
 # Scatter plot
 @app.callback(
-    dash.dependencies.Output('location', 'figure'),
+    [dash.dependencies.Output('location', 'figure'),
+     Output(component_id='output_container10', component_property='children'),
+     Output(component_id='output_container11', component_property='children')],
     [dash.dependencies.Input('my-date-picker-range', 'start_date'),
      dash.dependencies.Input('my-date-picker-range', 'end_date'),
      Input('upload-data', 'contents'),
@@ -888,6 +968,8 @@ def update_output_line(value,content,filename):
 
 def update_output_scatter(start_date, end_date,content,filename):
     df = parse_data(content, filename)
+    number_value_prod = len(df['Product'].unique())
+    number_value = len(df['Payment Mode'].unique())
     df['Date'] = pd.to_datetime(df['Date'])
     if(start_date==None):
         start_date = Timestamp('2021-02-01 00:00:00')
@@ -919,7 +1001,21 @@ def update_output_scatter(start_date, end_date,content,filename):
         ),
         title_font_size=20,
     )
-    return fig
+    return fig,daq.NumericInput(
+                labelPosition='bottom',
+                id='prod_num',
+                size=120,
+                min=0,
+                max=number_value_prod,
+                value=number_value_prod,
+                     ),daq.NumericInput(
+                    labelPosition='bottom',
+                    id='paiement_num',
+                    size=120,
+                    min=0,
+                    max=number_value,
+                    value=number_value,
+                )
 
 
 
